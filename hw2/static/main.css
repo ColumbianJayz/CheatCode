@@ -1,0 +1,432 @@
+/* Body */
+body {
+  overflow: auto; /* Prevent scrollbars from appearing */
+  background: linear-gradient(to right, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+
+}
+
+/* Nav Bar */
+.nav-bar {
+  padding-top: 20px;
+  justify-content: center;
+  background: inherit; /* Use the same gradient as the body */
+}
+
+/* Wave animation */
+@keyframes gradient-wave {
+  0% {
+    background-position: 50% 50%; /* Start at the center */
+  }
+  50% {
+    background-position: 100% 100%; /* Move diagonally */
+  }
+  100% {
+    background-position: 50% 50%; /* Return to the center */
+  }
+}
+
+
+.logo-navbar-image{
+  height: 80px;
+  width: auto;
+}
+.logo-title {
+  color: whitesmoke;
+  font-family: Consolas, monaco, monospace;
+   font-size: 20px;
+}
+
+.logo-container{
+  text-align: center;
+  margin-left: -125px;
+}
+.logo-container:hover .logo-navbar-image {
+  animation: horizontal-spin 0.5s ease-in-out;
+  transform: rotateY(360deg);
+}
+.the-top-container{
+  background-color: blue;
+  margin: 0 auto;
+}
+
+/* Nav Bar 2*/
+.nav-bar-2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between logo and other content */
+  background-color: inherit;
+  padding-top: 20px;
+}
+
+.logo-navbar-image-2{
+  height: 80px;
+  width: auto;
+  margin-left: -200px;
+}
+.logo-title-2 {
+  color: whitesmoke;
+  font-family: Consolas, monaco, monospace;
+   font-size: 20px;
+}
+
+.logo-container-2{
+  text-align: center;
+  margin-left: -125px;
+}
+.logo-container-2:hover .logo-navbar-image-2 {
+  animation: horizontal-spin 0.5s ease-in-out;
+  transform: rotateY(360deg);
+}
+
+
+/* Define the horizontal spin animation */
+@keyframes horizontal-spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+/* Main Page */
+
+#home-image-1 {
+  background-color: blue;
+  width: 20%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 30%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.2);
+  transform: perspective(500px) rotateX(10deg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0 15px;
+}
+
+#home-image-2 {
+  background-color: green;
+  width: 20%;
+  text-align: center;
+  border-radius: 30%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.2);
+  transform: perspective(500px) rotateX(10deg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0 90px;
+}
+
+#home-image-1:hover, #home-image-2:hover {
+  transform: perspective(500px) rotateX(5deg) translateY(-5px);
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.4), -8px -8px 20px rgba(255, 255, 255, 0.2);
+}
+
+.main-image {
+  height: 250px;
+}
+
+.main-image-container {
+  justify-content: center;
+  padding-top: 70px;
+}
+
+.slogan-container{
+  padding: 50px;
+}
+
+.image-text-1 {
+  color: white;
+  margin-top: -30px;
+}
+.image-text-2{
+  color: white;
+  margin-top: -20px;
+
+}
+.slogan-text {
+  background: linear-gradient(to right, blue, green);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: bold;
+  font-size: 30px;
+  font-family: Consolas, monaco, monospace;
+}
+/* Get Help Page */
+#box-container{
+  padding-top: 75px;
+  width: 100%;
+
+}
+
+
+.text-main {
+  color: white;
+  font-family: Consolas, monaco, monospace;
+  text-align: center;
+  margin-top: 75px;
+  font-weight: bold;
+  font-size: 18px;
+}
+.text-main-2 {
+  padding-right: 50px;
+  color: white;
+  font-family: Consolas, monaco, monospace;
+  text-align: center;
+  font-weight: bold;
+}
+
+.rating-text {
+  color: white;
+  font-family: Consolas, monaco, monospace;
+  text-align: center;
+  margin-top: 75px;
+  font-weight: bold;
+  font-size: 18px;
+}
+#problem-input,
+#big-o-input {
+    border-radius: 10px; /* Adjust this value for more or less rounding */
+    border: 1px solid #ccc; /* Optional: Adds a border */
+    padding: 8px; /* Optional: Adds padding for better spacing */
+    font-size: 14px; /* Optional: Adjust font size for consistency */
+    outline: none; /* Optional: Removes default blue outline on focus */
+    transition: border-color 0.3s ease; /* Optional: Smooth transition on focus */
+
+}
+
+#problem-input:focus,
+#big-o-input:focus {
+    border-color: #007bff; /* Optional: Changes border color on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Optional: Adds focus glow */
+}
+
+#big-o-section {
+  width: 100%;
+  margin-top: -20px;
+  padding-bottom: 40px;
+}
+
+
+#submit_btn {
+  border-radius: 12px;
+  background: linear-gradient(to bottom, #ff99cc, #ff66b2); /* Pink gradient for base shine */
+  color: white;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  padding: 12px 24px;
+  border: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#submit_btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
+
+#submit_btn:hover::before {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.3));
+  opacity: 0.7;
+}
+
+#submit_btn:hover {
+  background: linear-gradient(to bottom, #ff66b2, #ff3399);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+#submit_big-0_btn {
+  border-radius: 12px;
+  background: linear-gradient(to bottom, #ff99cc, #ff66b2); /* Pink gradient for base shine */
+  color: white;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  padding: 12px 24px;
+  border: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#submit_big-0_btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
+
+#submit_big-0_btn:hover::before {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.3));
+  opacity: 0.7;
+}
+
+#submit_big-0_btn:hover {
+  background: linear-gradient(to bottom, #ff66b2, #ff3399);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+
+
+/* Optimize Page*/
+#problem-input-2 {
+  border-radius: 10px; /* Adjust this value for more or less rounding */
+    border: 1px solid #ccc; /* Optional: Adds a border */
+    padding: 8px; /* Optional: Adds padding for better spacing */
+    font-size: 14px; /* Optional: Adjust font size for consistency */
+    outline: none; /* Optional: Removes default blue outline on focus */
+    transition: border-color 0.3s ease; /* Optional: Smooth transition on focus */
+    margin-left: -100px;
+    height: 200px;
+}
+
+#submit_btn-2{
+  border-radius: 12px;
+  background: linear-gradient(to bottom, #ff99cc, #ff66b2); /* Pink gradient for base shine */
+  color: white;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  padding: 12px 24px;
+  border: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-left: -90px;
+}
+
+#submit_btn-2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
+
+#submit_btn-2:hover::before {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.3));
+  opacity: 0.7;
+}
+
+#submit_btn-2:hover {
+  background: linear-gradient(to bottom, #ff66b2, #ff3399);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+/* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: fit-content;
+  font-weight: bold;
+  font-family: Consolas, monaco, monospace;
+  text-shadow: 
+    0 0 0 rgb(255 0 0), 
+    0 0 0 rgb(0 255 0), 
+    0 0 0 rgb(0 0 255);
+  font-size: 30px;
+  animation: l32 1s infinite cubic-bezier(0.5,-2000,0.5,2000);
+}
+
+.loader:before {
+  content: "Loading...";
+  color: white
+}
+
+@keyframes l32{
+  25%,100% {
+  text-shadow: 
+     0.03px -0.01px 0.01px rgb(255 0 0), 
+     0.02px  0.02px 0     rgb(0 255 0), 
+    -0.02px  0.02px 0     rgb(0 0 255);
+  }
+}
+
+/* Modal overlay for loader */
+/* Centered modal overlay */
+.loader-overlay {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  width: 30vw;
+  height: 30vh;
+  background:  linear-gradient(to bottom, #ff66b2, #ff3399);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensures it’s on top of other content */
+  border-radius: 50px;
+  transform: translate(-50%, -50%); /* Centers the overlay */
+}
+
+/*For the new rating*/
+/* Main Container */
+.container-wrapper {
+  background-color: transparent; /* Allow gradient to show through */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Star Rating Wrapper */
+.rating-wrapper {
+  align-self: center;
+  /* Adjusted box-shadow to be subtle */
+  box-shadow: 2px 2px 8px rgba(198, 206, 237, 0.7),
+              -2px -2px 12px rgba(255, 255, 255, 0.6),
+              inset 0px 0px 2px rgba(255, 255, 255, 0.9),
+              inset 2px 2px 5px rgba(198, 206, 237, 0.8);
+  border-radius: 2.5rem; /* Smaller rounding */
+  display: inline-flex;
+  direction: rtl; /* Keep stars ordered right-to-left */
+  padding: 1rem 1.5rem; /* Adjust padding for compact appearance */
+  background-color: transparent; /* Ensure no background color */
+  margin: 0; /* Remove any unintended margins */
+}
+
+/* Individual Star Labels */
+.rating-wrapper label {
+  color: #e1e6f6;
+  cursor: pointer;
+  font-size: 2.5rem; /* Smaller star size */
+  padding: 0.5rem 0.3rem; /* Adjust spacing between stars */
+  transition: color 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+/* Hidden Inputs */
+.rating-wrapper input {
+  display: none; /* Hide radio buttons */
+}
+
+/* Hover and Selected States */
+.rating-wrapper label:hover,
+.rating-wrapper label:hover ~ label,
+.rating-wrapper input:checked ~ label {
+  color: #FFFF99; /* Highlighted star color */
+}

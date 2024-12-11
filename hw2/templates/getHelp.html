@@ -1,0 +1,212 @@
+{% extends "layout2.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+  <div id="main-page-container" class="col-md-12">
+    <div class="problem-input-text-container">
+      <p class = "text-main">
+        Enter LeetCode Problem name and programming Language: 
+      </p>
+    </div>
+    <div id="box-container" class="col-md-4 mx-auto">
+      <textarea id="problem-input" rows="2" cols="50"></textarea>
+      <button id="submit_btn" type="button" onclick="submitRequest()">Submit</button>  
+      <div id="loading-overlay" class="loader-overlay" style="display: none;">
+        <div id="loading" class="loader"></div>
+      </div>
+    </div>
+    <br>
+    <div id="solution-output"></div> <!-- Updated to match the JS code -->
+    <br>
+    <div id="box-container" class="col-md-4 mx-auto">
+  </div>
+  <div id="big-o-section" class="col-md-4 mx-auto" style = "display: none;">
+    <p class = "text-main-2">
+      What's the big o? 
+    </p>
+  <textarea id="big-o-input" rows="2" cols="50"></textarea>
+  <button id="submit_big-0_btn" type="button" onclick="submitBig()">Submit</button>
+  </div>
+  </div>
+  <br>
+  <div id="big-o-solution-output"></div> <!-- Updated to match the JS code -->
+  <div class="container-wrapper" style="display: none;" id="star-rating">
+    <p class = "rating-text">How would you rate the response?</p>
+      <br>
+    <div class="container d-flex align-items-center justify-content-center">
+      <div class="row justify-content-center">
+        
+        <!-- Star Rating -->
+        <div class="rating-wrapper">
+          
+          <!-- Star 5 -->
+          <input type="radio" id="5-star-rating" name="star-rating" value="5">
+          <label for="5-star-rating" class="star-rating">
+            <i class="fas fa-star d-inline-block"></i>
+          </label>
+          
+          <!-- Star 4 -->
+          <input type="radio" id="4-star-rating" name="star-rating" value="4">
+          <label for="4-star-rating" class="star-rating">
+            <i class="fas fa-star d-inline-block"></i>
+          </label>
+          
+          <!-- Star 3 -->
+          <input type="radio" id="3-star-rating" name="star-rating" value="3">
+          <label for="3-star-rating" class="star-rating">
+            <i class="fas fa-star d-inline-block"></i>
+          </label>
+          
+          <!-- Star 2 -->
+          <input type="radio" id="2-star-rating" name="star-rating" value="2">
+          <label for="2-star-rating" class="star-rating">
+            <i class="fas fa-star d-inline-block"></i>
+          </label>
+          
+          <!-- Star 1 -->
+          <input type="radio" id="1-star-rating" name="star-rating" value="1">
+          <label for="1-star-rating" class="star-rating">
+            <i class="fas fa-star d-inline-block"></i>
+          </label>
+          
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
+
+<script>
+  let previouslyCommentedCode = '';
+  function submitRequest() {
+    const problemInput = document.getElementById("problem-input").value;
+
+    // Display the loading indicator
+    document.getElementById("loading-overlay").style.display = "flex";
+
+    // Send a POST request to the backend
+    fetch('/get_help_with_problem', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ problem: problemInput }),
+    })
+    .then(response => response.json())
+    .then(data => {
+  // Hide the loading indicator
+  document.getElementById("loading-overlay").style.display = "none";
+
+  // Store the commented code globally
+  previouslyCommentedCode = data.commentedCode;
+
+  // Get the response div and update it
+  const responseDiv = document.getElementById("solution-output");
+  responseDiv.innerHTML = '<h4>Please see the result below:</h4>';
+
+  // Create a preformatted block to display the commented-out code
+  const codeBlock = document.createElement('pre'); // Use <pre> to maintain formatting
+  codeBlock.classList.add('terminal');  // Apply terminal-like styling
+  const commentCode = document.createElement('code'); // Wrap the entire response in <code>
+  commentCode.textContent = data.commentedCode; // Assuming the response contains a 'commentedCode' field
+  codeBlock.appendChild(commentCode);
+
+  // Append the formatted code block to the response div
+  responseDiv.appendChild(codeBlock);
+
+  responseDiv.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+  });
+
+  setTimeout(() => {
+        const bigSection = document.getElementById("big-o-section");
+        bigSection.style.display = "block";
+
+        // Smooth scroll to the star rating section
+        bigSection.scrollIntoView({
+            behavior: "smooth",
+            block: "center", // Centers the section in the viewport
+        });
+    }, 10000); 
+})
+    .catch(error => {
+      // Handle any errors that occur during the request
+      document.getElementById("loading-overlay").style.display = "none";
+      console.error('Error:', error);
+    });
+  }
+  
+  function submitBig() {
+    const bigProblemInput = document.getElementById("big-o-input").value;
+
+    // Log the previous commented code to verify its contents
+    console.log("Previous Commented Code:", previouslyCommentedCode);
+
+    // Check if previouslyCommentedCode exists
+    if (!previouslyCommentedCode) {
+        alert("Please get help with a problem first to analyze its Big O complexity.");
+        return;
+    }
+
+    // Display the loading indicator
+    document.getElementById("loading-overlay").style.display = "flex";
+
+    // Send a POST request to the backend
+    fetch('/get_big_o', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 
+        newProblem: bigProblemInput, 
+        last_commented_code: previouslyCommentedCode 
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Hide the loading indicator
+      document.getElementById("loading-overlay").style.display = "none";
+
+      // Get the response div and update it
+      const responseDiv = document.getElementById("big-o-solution-output");
+      responseDiv.innerHTML = '<h4>Please see the result below:</h4>';
+
+      // Create a preformatted block to display the commented-out code
+      const codeBlock = document.createElement('pre'); // Use <pre> to maintain formatting
+      codeBlock.classList.add('terminal');  // Apply terminal-like styling
+      const commentCode = document.createElement('code'); // Wrap the entire response in <code>
+      commentCode.textContent = data.commentedCode; // Assuming the response contains a 'commentedCode' field
+      codeBlock.appendChild(commentCode);
+
+      // Append the formatted code block to the response div
+      responseDiv.appendChild(codeBlock);
+
+      responseDiv.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+
+      setTimeout(() => {
+            const starRating = document.getElementById("star-rating");
+            starRating.style.display = "block";
+
+            // Smooth scroll to the star rating section
+            starRating.scrollIntoView({
+                behavior: "smooth",
+                block: "center", // Centers the section in the viewport
+            });
+        }, 10000); 
+    })
+    .catch(error => {
+      // Handle any errors that occur during the request
+      document.getElementById("loading-overlay").style.display = "none";
+      console.error('Error:', error);
+      alert("An error occurred. Please try again or get help with the problem first.");
+    });
+  }
+  
+</script>
+
+
+{% endblock %}

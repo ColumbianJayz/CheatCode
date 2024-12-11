@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="row slogan-container justify-content-center">
+  <p class="slogan-text">Your Leetcode AI Assitant</p>
+</div>
+
+<div class="row main-image-container justify-content-center">
+
+  
+    <div id="home-image-1" class="col-md-2.5text-center">
+      <a class="nav-link" href="/getHelp">
+      <img src="{{ url_for('static', filename='assets/getHelp.png') }}" alt="Logo" class="img-fluid main-image">
+      </a>
+     <p class="image-text-1">Enter a leetcode problem</p>
+    </div>
+    <div id="home-image-2" class="col-md-2.5 text-center">
+      <a class="nav-link" href="/optimize">
+      <img src="{{ url_for('static', filename='assets/optimize.png') }}" alt="Logo" class="img-fluid main-image">
+      </a>
+      <p class="image-text-2">Enter what you have so far</p>
+    </div>
+    <br>
+</div>
+
+
+<script>
+  function submitRequest() {
+    const problemInput = document.getElementById("problem-input").value;
+
+    // Display the loading indicator
+    document.getElementById("loading").style.display = "block";
+
+    // Send a POST request to the backend
+    fetch('/get_help_with_problem', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ problem: problemInput }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Hide the loading indicator
+      document.getElementById("loading").style.display = "none";
+
+      // Get the response div and update it
+      const responseDiv = document.getElementById("solution-output");
+      responseDiv.innerHTML = '<h4>Please see the result below:</h4>';
+
+      // Create a preformatted block to display the commented-out code
+      const codeBlock = document.createElement('pre'); // Use <pre> to maintain formatting
+      codeBlock.classList.add('terminal');  // Apply terminal-like styling
+      const commentCode = document.createElement('code'); // Wrap the entire response in <code>
+      commentCode.textContent = data.commentedCode; // Assuming the response contains a 'commentedCode' field
+      codeBlock.appendChild(commentCode);
+
+      // Append the formatted code block to the response div
+      responseDiv.appendChild(codeBlock);
+    })
+    .catch(error => {
+      // Handle any errors that occur during the request
+      document.getElementById("loading").style.display = "none";
+      console.error('Error:', error);
+    });
+  }
+  
+  function submitBig() {
+    const bigProblemInput = document.getElementById("big-o-input").value;
+
+    // Display the loading indicator
+    document.getElementById("big-o-loading").style.display = "block";
+
+    // Send a POST request to the backend
+    fetch('/get_big_o', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ newProblem: bigProblemInput }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Hide the loading indicator
+      document.getElementById("big-o-loading").style.display = "none";
+
+      // Get the response div and update it
+      const responseDiv = document.getElementById("big-o-solution-output");
+      responseDiv.innerHTML = '<h4>Please see the result below:</h4>';
+
+      // Create a preformatted block to display the commented-out code
+      const codeBlock = document.createElement('pre'); // Use <pre> to maintain formatting
+      codeBlock.classList.add('terminal');  // Apply terminal-like styling
+      const commentCode = document.createElement('code'); // Wrap the entire response in <code>
+      commentCode.textContent = data.commentedCode; // Assuming the response contains a 'commentedCode' field
+      codeBlock.appendChild(commentCode);
+
+      // Append the formatted code block to the response div
+      responseDiv.appendChild(codeBlock);
+    })
+    .catch(error => {
+      // Handle any errors that occur during the request
+      document.getElementById("big-o-loading").style.display = "none";
+      console.error('Error:', error);
+    });
+  }
+  
+</script>
+
+
+{% endblock %}
